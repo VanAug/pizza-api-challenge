@@ -4,6 +4,7 @@ from server.models.restaurant import Restaurant, db
 
 restaurant_bp = Blueprint("restaurants", __name__)
 
+#Get all restaurants 
 @restaurant_bp.route("/restaurants", methods=["GET"])
 def get_restaurants():
     restaurants = Restaurant.query.all()
@@ -13,7 +14,7 @@ def get_restaurants():
         "address": r.address
     } for r in restaurants])
 
-
+#Get restaurant by id and its pizzas
 @restaurant_bp.route("/restaurants/<int:id>", methods=["GET"])
 def get_restaurant(id):
     restaurant = Restaurant.query.get(id)
@@ -33,7 +34,7 @@ def get_restaurant(id):
         ]
     })
 
-
+#Delete restaurant by id
 @restaurant_bp.route("/restaurants/<int:id>", methods=["DELETE"])
 def delete_restaurant(id):
     restaurant = Restaurant.query.get(id)
