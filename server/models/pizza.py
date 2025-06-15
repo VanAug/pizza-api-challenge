@@ -6,6 +6,6 @@ class Pizza(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String, nullable = False)
-    ingredients = db.Column(db.String, nullable = False)
+    ingredients = db.Column(db.String)
 
-    restaurant_pizza = db.relationship("Restaurant_Pizza", back_populates = "pizzas")
+    restaurant_pizzas = db.relationship("Restaurant_Pizza", back_populates = "pizza")
