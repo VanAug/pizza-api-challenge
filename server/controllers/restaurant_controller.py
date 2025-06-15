@@ -1,6 +1,6 @@
 
 from flask import Blueprint, jsonify
-from server.models import Restaurant
+from server.models.restaurant import Restaurant, db
 
 restaurant_bp = Blueprint("restaurants", __name__)
 
@@ -40,7 +40,6 @@ def delete_restaurant(id):
     if not restaurant:
         return jsonify({"error": "Restaurant not found"}), 404
 
-    from server.models import db
     db.session.delete(restaurant)
     db.session.commit()
     return "", 204
